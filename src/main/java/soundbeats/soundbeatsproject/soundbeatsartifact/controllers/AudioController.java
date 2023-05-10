@@ -1,6 +1,5 @@
 package soundbeats.soundbeatsproject.soundbeatsartifact.controllers;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -54,6 +53,12 @@ public class AudioController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return "home";
+    }
+
+    @PostMapping("/subirArchivo")
+    public String prueba(@RequestParam("file") MultipartFile file){
+        
         return "home";
     }
 }
