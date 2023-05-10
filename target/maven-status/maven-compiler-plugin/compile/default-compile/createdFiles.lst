@@ -1,0 +1,7 @@
+soundbeats\soundbeatsproject\soundbeatsartifact\SoundbeatsartifactApplication.class
+soundbeats\soundbeatsproject\soundbeatsartifact\controllers\LoginController.class
+soundbeats\soundbeatsproject\soundbeatsartifact\domain\usuario\modelo\Usuario.class
+soundbeats\soundbeatsproject\soundbeatsartifact\controllers\HomeController.class
+soundbeats\soundbeatsproject\soundbeatsartifact\domain\usuario\repositorio\UserRepository.class
+soundbeats\soundbeatsproject\soundbeatsartifact\controllers\IndexController.class
+soundbeats\soundbeatsproject\soundbeatsartifact\controllers\AudioController.class
