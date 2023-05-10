@@ -10,4 +10,9 @@ public class HomeController {
     public String getHome(){
         return "home";
     }
+
+    @GetMapping("/exit")
+    public String exit(){
+        return "login";
+    }
 }
