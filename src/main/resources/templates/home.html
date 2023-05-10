@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,8 +17,9 @@
         <head>
             <span id="soundbeats-logo"><img src="images/soundbeats-logo.png" alt="Logo SoundBeats"></span>
         </head>
-        <form action="/subirArchivo" method="post">
-            <button>SUBIR ARCHIVO</button>
+        <form method="post" action="/subirArchivo" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <button type="submit">SUBIR AUDIO (COMPRIMIDO)</button>
         </form>
         <form action="/diagnostico" method="post">
             <button>REALIZAR DIAGNOSTICO</button>
