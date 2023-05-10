@@ -38,11 +38,3 @@ jobs:
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=soundbeats -Dsonar.projectName='soundbeats'
         #prueba
 
-name: ssh de prueba
-        uses: appleboy/ssh-action@v0.1.7
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.OMG_SECRET}}
-          port: 22
-          script: whoami
