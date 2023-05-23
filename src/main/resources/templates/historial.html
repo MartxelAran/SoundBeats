@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoundBeats Application</title>
+    <link rel="stylesheet" href="css/diagnostico.css">
+    <link rel="shortcut icon" href="images/soundbeats-icon.png" type="image/x-icon">
+</head>
+
+<body>
+    <header>
+        <h1>Historial de Diagnósticos de Enfermedades</h1>
+    </header>
+    <main>
+        <h1 th:text="${paciente.nombre}+' '+${paciente.apellido}+' este es tu Historial de diagnosticos/consultas:'"></h1>
+        <div th:each="consulta : ${consultas}" id="diagnostico">
+            <h2>DIAGNOSTICO</h2>
+            <label for="nombreEnfermedad"><p th:text="'El nombre: '+${consulta.nombreEnfermedad}"></p></label>
+            <label for="fechaConsulta"><p th:text="'Fecha de la consulta: '+${consulta.fecha}"></p></label>
+            <label for="direccion"><p th:text="'Direccion de la consulta: '+${consulta.ciudad}+', '+${consulta.direccion}"></p></label>
+            <label for="nombreMedico"><p th:text="'Nombre del medico: '+${consulta.nombreMedico}"></p></label>
+        </div>
+        <a href="/home" class="button">Atras</a>
+    </main>
+</body>
+
+</html>
