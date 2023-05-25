@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -55,10 +54,8 @@ public class ConsultaUtils {
 
     public void insertConsulta(Consulta consulta){
         Client client = ClientBuilder.newClient();
-        Consulta cons = new Consulta(LocalDateTime.now().toString(), "Arrasate", "Nafarroa Hiribidea", null, "nombre",
-                null, null);
-        String url = "http://soundbeatsnodered.duckdns.org/diagnostico";
-        Response response = client.target(url).request(MediaType.APPLICATION_JSON).post(Entity.json(cons));
+        String url = "http://soundbeatsnodered.duckdns.org/diagnosticoPrueba";
+        Response response = client.target(url).request(MediaType.APPLICATION_JSON).post(Entity.json(consulta));
 
         int status = response.getStatus();
         response.close();

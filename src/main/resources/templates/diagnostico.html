@@ -18,12 +18,12 @@
         <h1 th:text="'Gracias, '+${paciente.nombre}+' '+${paciente.apellido}+' el diagnostico se ha realizado correctamente:'"></h1>
         <h2>DIAGNOSTICO:</h2>
         <div id="diagnostico">
-            <label for="nombreDiagnostico"><p th:text="'El nombre: '+${enfermedad.nombre}"></p></label>
+            <label for="nombreDiagnostico"><p th:text="'Resultado: '+${enfermedad.nombre}"></p></label>
             <label for="solucionPosibleDiagnostico">
-                <p th:text="'Esta es una solucion posible del diagnostico: '+${enfermedad.solucion}"></p>
+                <p th:text="'Recomendaciones: '+${enfermedad.solucion}"></p>
             </label>
         </div>
-        <a href="/home">Atras</a>
+        <a href="/home" class="button">ATRAS</a>
     </main>
 </body>
 

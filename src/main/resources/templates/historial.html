@@ -18,7 +18,7 @@
         <h1 th:text="${paciente.nombre}+' '+${paciente.apellido}+' este es tu Historial de diagnosticos/consultas:'"></h1>
         <div th:each="consulta : ${consultas}" id="diagnostico">
             <h2>DIAGNOSTICO</h2>
-            <label for="nombreEnfermedad"><p th:text="'El nombre: '+${consulta.nombreEnfermedad}"></p></label>
+            <label for="nombreEnfermedad"><p th:text="'Resultado: '+${consulta.enfermedad}"></p></label>
             <label for="fechaConsulta"><p th:text="'Fecha de la consulta: '+${consulta.fecha}"></p></label>
             <label for="direccion"><p th:text="'Direccion de la consulta: '+${consulta.ciudad}+', '+${consulta.direccion}"></p></label>
             <label for="nombreMedico"><p th:text="'Nombre del medico: '+${consulta.nombreMedico}"></p></label>

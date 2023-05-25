@@ -1,29 +1,32 @@
 package soundbeats.soundbeatsproject.soundbeatsartifact.domain.consulta;
 
-import jakarta.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement
 public class Consulta {
     String fecha;
     String ciudad;
     String direccion;
-    String nombreEnfermedad;
+    String enfermedad;
     String nombreMedico;
     Integer verificado;
     String audio;
+    String nuss;
+    Integer farmaciaID;
+    Integer hospitalID;
 
 
     public Consulta() {
     }
 
-    public Consulta(String fecha, String ciudad, String direccion, String nombreEnfermedad, String nombreMedico, Integer verificado, String audio) {
+    public Consulta(String fecha, String ciudad, String direccion, String enfermedad, String nombreMedico, Integer verificado, String audio, String nuss, Integer hospitalID, Integer farmaciaID) {
         this.fecha = fecha;
         this.ciudad = ciudad;
         this.direccion = direccion;
-        this.nombreEnfermedad = nombreEnfermedad;
+        this.enfermedad = enfermedad;
         this.nombreMedico = nombreMedico;
         this.verificado = verificado;
         this.audio = audio;
+        this.nuss = nuss;
+        this.farmaciaID = farmaciaID;
+        this.hospitalID = hospitalID;
     }
 
 
@@ -51,12 +54,12 @@ public class Consulta {
         this.direccion = direccion;
     }
 
-    public String getNombreEnfermedad() {
-        return this.nombreEnfermedad;
+    public String getEnfermedad() {
+        return this.enfermedad;
     }
 
-    public void setNombreEnfermedad(String nombreEnfermedad) {
-        this.nombreEnfermedad = nombreEnfermedad;
+    public void setEnfermedad(String enfermedad) {
+        this.enfermedad = enfermedad;
     }
 
     public String getNombreMedico() {
@@ -67,11 +70,7 @@ public class Consulta {
         this.nombreMedico = nombreMedico;
     }
 
-    public Integer isverificado() {
-        return this.verificado;
-    }
-
-    public Integer getverificado() {
+    public Integer getVerificado() {
         return this.verificado;
     }
 
@@ -87,16 +86,45 @@ public class Consulta {
         this.audio=audio;
     }
 
+    public String getNuss(){
+        return this.nuss;
+    }
+
+    public void setNuss(String nuss){
+        this.nuss=nuss;
+    }
+
+    public void setVerificado(Integer verificado) {
+        this.verificado = verificado;
+    }
+
+    public Integer getFarmaciaID() {
+        return this.farmaciaID;
+    }
+
+    public void setFarmaciaID(Integer farmaciaID) {
+        this.farmaciaID = farmaciaID;
+    }
+
+    public Integer getHospitalID() {
+        return this.hospitalID;
+    }
+
+    public void setHospitalID(Integer hospitalID) {
+        this.hospitalID = hospitalID;
+    }
+
 
     @Override
     public String toString() {
         return "{" +
-            " fecha='" + getFecha() + "'" +
+            " nuss='" + getNuss() + "'" +
+            ", fecha='" + getFecha() + "'" +
             ", ciudad='" + getCiudad() + "'" +
             ", direccion='" + getDireccion() + "'" +
-            ", nombreEnfermedad='" + getNombreEnfermedad() + "'" +
+            ", enfermedad='" + getEnfermedad() + "'" +
             ", nombreMedico='" + getNombreMedico() + "'" +
-            ", verificado='" + isverificado() + "'" +
+            ", verificado='" + getVerificado() + "'" +
             "}";
     }
 }
