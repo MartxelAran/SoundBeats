@@ -54,7 +54,7 @@ public class ConsultaUtils {
 
     public void insertConsulta(Consulta consulta){
         Client client = ClientBuilder.newClient();
-        String url = "http://soundbeatsnodered.duckdns.org/diagnosticoPrueba";
+        String url = "http://soundbeatsnodered.duckdns.org/diagnostico";
         Response response = client.target(url).request(MediaType.APPLICATION_JSON).post(Entity.json(consulta));
 
         int status = response.getStatus();
