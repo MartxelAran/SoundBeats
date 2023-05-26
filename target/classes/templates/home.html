@@ -9,24 +9,23 @@
     <link rel="shortcut icon" href="images/soundbeats-icon.png" type="image/x-icon">
 </head>
 <body>
-    <nav>
-        <div>Eu</div>
-        <div>Es</div>
-    </nav>
+    <header>
+        <img src="images/soundbeats-logo.png" alt="Logo SoundBeats">
+        <h1 th:text="Bienvenido+' '+${paciente.nombre}+' '+${paciente.apellido}"></h1>
+    </header>
     <main>
-        <head>
-            <span id="soundbeats-logo"><img src="images/soundbeats-logo.png" alt="Logo SoundBeats"></span>
-        </head>
         <form method="post" action="/subirArchivo" enctype="multipart/form-data">
+            <h2>DIAGNOSTICO</h2>
             <input type="file" name="file">
-            <button type="submit">SUBIR AUDIO (COMPRIMIDO)</button>
+            <button type="submit">REALIZAR DIAGNOSTICO</button>
         </form>
-        <form action="/diagnostico" method="post">
-            <button>REALIZAR DIAGNOSTICO</button>
-        </form>
-        <form action="/exit" method="post">
-            <button>EXIT</button>
-        </form>
+        <h2>HISTORIAL DE DIAGNOSTICOS</h2>
+        <div class="button-container">
+            <a href="/historial" class="button">MOSTRAR HISTORIAL</a>
+        </div>
+        <footer>
+            <a href="/exit" class="button">SALIR</a>
+        </footer>
     </main>
 </body>
 </html>

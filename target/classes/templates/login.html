@@ -1,29 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SoundBeats Application</title>
-    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/login.css">
     <link rel="shortcut icon" href="images/soundbeats-icon.png" type="image/x-icon">
 </head>
 <body>
-    <nav>
-        <div>Eu</div>
-        <div>Es</div>
-    </nav>
-    <main>
-        <head>
-            <span id="soundbeats-logo"><img src="images/soundbeats-logo.png" alt="Logo SoundBeats"></span>
-        </head>
+    <div class="container">
+        <h2>Inicio de sesión</h2>
+        <div class="image-container">
+            <img src="images/oti-zk.png" alt="Num.Seg.Soc.">
+        </div>
         <form action="/login" method="post">
-            <span><img src="images/oti-zk.png" alt="Logo SoundBeats"></span>
-            <span><img src="images/numVerde.png" alt="Logo SoundBeats">Num. TIS: <input type="text" name="numSS"></span>
-            <span>1. apellido: <input type="text" name="1apellido"></span>
-            <span>Fecha de nacimiento: <input type="date" name="fechadenacimiento"></span>
-            <button>Login</button>
+            <label for="seguridad_social">Número de Seguridad Social: <img src="images/numVerde.png" alt="Numero verde"></label>
+            <input type="text" id="seguridad_social" name="numSS" required>
+
+            <label for="apellido">Primer Apellido:</label>
+            <input type="text" id="apellido" name="1apellido" required>
+
+            <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+            <input type="date" id="fecha_nacimiento" name="fechadenacimiento" required>
+
+            <input id="submit" type="submit" value="Iniciar sesión">
         </form>
-    </main>
+    </div>
 </body>
 </html>

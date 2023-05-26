@@ -1,34 +1,79 @@
-main{
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #f2f2f2;
+    padding: 20px;
     text-align: center;
 }
 
-main>*{
-    margin: 0.5em;
+main {
+    padding: 20px;
 }
 
-main>form{
-    display: flex;
-    flex-direction: column;
+h2 {
+    margin-top: 0;
 }
 
-form>*{
-    margin: 0.5em 0;
+form {
+    margin-bottom: 20px;
 }
 
-nav{
-    display: flex;
-    flex-direction: row;
+button {
+    background-color: #333;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-nav>div{
-    margin: 0.5em;
+button:hover{
+    background-color: #000000;
 }
 
-button{
-    margin: 0 40%;
-    width: 20%;
+a.button{
+    background-color: #333;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-#soundbeats-logo{
-    display: block;
+a.button:hover{
+    background-color: #000000;
+}
+
+footer {
+    background-color: #f2f2f2;
+    padding: 20px;
+    text-align: center;
+}
+
+.logo {
+    max-width: 200px;
+}
+
+.welcome-message {
+    font-size: 18px;
+    color: #666;
+    margin-top: 20px;
+}
+
+.button-container {
+    margin-top: 20px;
+}
+
+.button-container button {
+    margin-right: 10px;
 }
