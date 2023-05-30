@@ -18,11 +18,9 @@
         <h1 th:text="'Gracias, '+${paciente.nombre}+' '+${paciente.apellido}+' el diagnostico se ha realizado correctamente:'"></h1>
         <h2>DIAGNOSTICO:</h2>
         <div id="diagnostico">
-            <label for="nombreDiagnostico"><p th:text="'Resultado: '+${enfermedad.nombre}"></p></label>
-            <label for="solucionPosibleDiagnostico">
-                <p th:text="'Recomendaciones: '+${enfermedad.solucion}"></p>
-            </label>
+            <label for="nombreDiagnostico"><p th:text="'Resultado: '+${consulta.enfermedad}"></p></label>
         </div>
+        <a href="/mail" class="button">MANDAR MAIL MEDICO</a>
         <a href="/home" class="button">ATRAS</a>
     </main>
 </body>

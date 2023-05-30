@@ -75,6 +75,6 @@ public class FileUploadUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "src/main/resources/static/audios/"+path.getFileName().toString();
+        return "src/main/resources/static/audios/" + path.getFileName().toString();
     } 
 }
