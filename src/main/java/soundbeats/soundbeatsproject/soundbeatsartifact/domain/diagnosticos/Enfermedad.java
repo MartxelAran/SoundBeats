@@ -4,7 +4,6 @@ public class Enfermedad {
     
     String nombre;
     String solucion;
-    
 
     public Enfermedad(String nombre, String solucion) {
         this.nombre = nombre;
