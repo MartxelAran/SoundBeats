@@ -3,11 +3,11 @@ package soundbeats.soundbeatsproject.soundbeatsartifact.domain.diagnosticos;
 public class Enfermedad {
     
     String nombre;
-    String solucion;
+    String definicion;
 
-    public Enfermedad(String nombre, String solucion) {
+    public Enfermedad(String nombre, String definicion) {
         this.nombre = nombre;
-        this.solucion = solucion;
+        this.definicion = definicion;
     }
 
 
@@ -19,12 +19,12 @@ public class Enfermedad {
         this.nombre = nombre;
     }
 
-    public String getSolucion() {
-        return this.solucion;
+    public String getDefinicion() {
+        return this.definicion;
     }
 
-    public void setSolucion(String solucion) {
-        this.solucion = solucion;
+    public void setDefinicion(String definicion) {
+        this.definicion = definicion;
     }
 
 }

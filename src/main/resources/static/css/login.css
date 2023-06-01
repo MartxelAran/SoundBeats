@@ -35,19 +35,28 @@ input[type="date"] {
     margin-right: 1em;
 }
 
-input[type="submit"] {
+input#submit {
     padding: 10px;
     background-color: #333;
     color: white;
     border: none;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
     width: 100%;
 }
 
-input[type="submit"]:hover {
+input#submit:hover {
     background-color: #000000;
+}
+
+input#admin{
+    background-color: #333;
+    color: white;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    margin: 0.5em;
+    width: 53%;
 }
 
 .image-container {

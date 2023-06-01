@@ -1,6 +1,9 @@
 package soundbeats.soundbeatsproject.soundbeatsartifact.domain.consulta;
 
+import soundbeats.soundbeatsproject.soundbeatsartifact.domain.paciente.Paciente;
+
 public class Consulta {
+    Integer consultaid;
     String fecha;
     String ciudad;
     String direccion;
@@ -11,12 +14,14 @@ public class Consulta {
     String nuss;
     Integer farmaciaID;
     Integer hospitalID;
+    Paciente pac;
 
 
     public Consulta() {
     }
 
-    public Consulta(String fecha, String ciudad, String direccion, String enfermedad, String nombreMedico, Integer verificado, String audio, String nuss, Integer hospitalID, Integer farmaciaID) {
+    public Consulta(Integer consultaid, String fecha, String ciudad, String direccion, String enfermedad, String nombreMedico, Integer verificado, String audio, String nuss, Integer hospitalID, Integer farmaciaID, Paciente pac) {
+        this.consultaid = consultaid;
         this.fecha = fecha;
         this.ciudad = ciudad;
         this.direccion = direccion;
@@ -27,8 +32,16 @@ public class Consulta {
         this.nuss = nuss;
         this.farmaciaID = farmaciaID;
         this.hospitalID = hospitalID;
+        this.pac = pac;
     }
 
+    public Integer getConsultaid() {
+        return this.consultaid;
+    }
+
+    public void setConsultaid(Integer consultaid) {
+        this.consultaid = consultaid;
+    }
 
     public String getFecha() {
         return this.fecha;
@@ -114,6 +127,14 @@ public class Consulta {
         this.hospitalID = hospitalID;
     }
 
+
+    public Paciente getPac() {
+        return this.pac;
+    }
+
+    public void setPac(Paciente pac) {
+        this.pac = pac;
+    }
 
     @Override
     public String toString() {

@@ -1,0 +1,79 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+header,
+main,
+footer {
+    padding: 20px;
+}
+
+/* Estilos del encabezado */
+header {
+    background-color: #333;
+    color: #fff;
+}
+
+header h1 {
+    margin: 0;
+    padding: 10px;
+}
+
+/* Estilos del panel de administración */
+#admin-panel table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: initial;
+}
+
+#admin-panel th,
+#admin-panel td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+#admin-panel th {
+    text-align: left;
+    background-color: #f2f2f2;
+}
+
+#admin-panel .confirmar-btn,
+#admin-panel .denegar-btn {
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+}
+
+#admin-panel .confirmar-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#admin-panel .denegar-btn {
+    background-color: #F44336;
+    color: white;
+}
+
+a.button{
+    margin-top: 1em;
+    background-color: #333;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+a.button:hover{
+    background-color: #000000;
+}
+
+img{
+    width: 5%;
+}
