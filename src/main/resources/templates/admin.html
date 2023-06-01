@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoundBeats Application</title>
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="shortcut icon" href="images/soundbeats-icon.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <h1>Hola Laura Martinez</h1>
+    </header>
+    <main>
+        <section id="admin-panel">
+            <h2>Panel de Administración</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Diagnostico ID</th>
+                        <th>Paciente</th>
+                        <th>Síntomas</th>
+                        <th>Fecha</th>
+                        <th>Ciudad</th>
+                        <th>Estado del Diagnóstico</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="consulta : ${consultas}">
+                        <td th:text="${consulta.consultaid}"></td>
+                        <td th:text="${consulta.pac.nombre}+' '+${consulta.pac.apellido}"></td>
+                        <td th:text="${consulta.enfermedad}"></td>
+                        <td th:text="${consulta.fecha}"></td>
+                        <td th:text="${consulta.ciudad}"></td>
+                        <td>
+                            <a th:href="@{'/confirm/'+${consulta.consultaid}}" class="confirmar-btn">Validar</a>
+                            <a th:href="@{'/denegar/'+${consulta.consultaid}}" class="denegar-btn">Denegar</a>
+                        </td>
+                        <td><a th:href="@{'/deleteCons/'+${consulta.consultaid}}"><img src="/images/delete-icon.png" alt="delete"></a></td>
+                    </tr>
+                    <!-- Aquí se pueden agregar más filas con los diagnósticos de los usuarios -->
+                </tbody>
+            </table>
+        </section>
+        <a href="/exit" class="button">EXIT</a>
+    </main>
+</body>
+</html>
