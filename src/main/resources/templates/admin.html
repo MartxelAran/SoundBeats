@@ -34,9 +34,15 @@
                         <td th:text="${consulta.enfermedad}"></td>
                         <td th:text="${consulta.fecha}"></td>
                         <td th:text="${consulta.ciudad}"></td>
-                        <td>
-                            <a th:href="@{'/confirm/'+${consulta.consultaid}}" class="confirmar-btn">Validar</a>
+                        <td th:if="${consulta.verificado} == 0">
+                            <a th:href="@{'/confirmar/'+${consulta.consultaid}}" class="confirmar-btn">Validar</a>
                             <a th:href="@{'/denegar/'+${consulta.consultaid}}" class="denegar-btn">Denegar</a>
+                        </td>
+                        <td th:if="${consulta.verificado} == 1">
+                            <img src="/images/tick.png" alt="">
+                        </td>
+                        <td th:if="${consulta.verificado} == 2">
+                            <img src="/images/cross.png" alt="">
                         </td>
                         <td><a th:href="@{'/deleteCons/'+${consulta.consultaid}}"><img src="/images/delete-icon.png" alt="delete"></a></td>
                     </tr>

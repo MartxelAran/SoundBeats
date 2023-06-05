@@ -10,6 +10,7 @@ public class Enfermedad {
         this.definicion = definicion;
     }
 
+    public Enfermedad(){}
 
     public String getNombre() {
         return this.nombre;

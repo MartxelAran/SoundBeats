@@ -12,6 +12,7 @@ import soundbeats.soundbeatsproject.soundbeatsartifact.domain.consulta.Consulta;
 import soundbeats.soundbeatsproject.soundbeatsartifact.domain.diagnosticos.Enfermedad;
 import soundbeats.soundbeatsproject.soundbeatsartifact.domain.paciente.LoggedPaciente;
 import soundbeats.soundbeatsproject.soundbeatsartifact.domain.paciente.Paciente;
+import soundbeats.soundbeatsproject.soundbeatsartifact.sanetizacion.ConsultaSanetizacion;
 import soundbeats.soundbeatsproject.soundbeatsartifact.utils.ConsultaUtils;
 import soundbeats.soundbeatsproject.soundbeatsartifact.utils.FileUploadUtil;
 import soundbeats.soundbeatsproject.soundbeatsartifact.utils.PacienteUtils;
@@ -35,6 +36,9 @@ public class ConsultaController {
     @Autowired
     private FileUploadUtil fileUploadUtil;
 
+    @Autowired
+    private ConsultaSanetizacion consultaSanetizacion;
+
     static final String UPLOAD_DIR = "src/main/resources/static/audios";
     
     @GetMapping("/historial")
@@ -48,27 +52,42 @@ public class ConsultaController {
     @PostMapping("/subirArchivo")
     public String getAudio(@RequestParam("file") MultipartFile file, Model model) {
         String path=fileUploadUtil.getDeszip(file);
-        String base64=fileUploadUtil.convertBase64(path);
-        Paciente pac=LoggedPaciente.getPaciente();
-        model.addAttribute("paciente", pac);
-        Consulta cons = new Consulta(null,LocalDateTime.now().toString(), "Arrasate", "Nafarroa Hiribidea", "null", "nombre",
+        if(path!=null){
+            String base64=fileUploadUtil.convertBase64(path);
+            Paciente pac=LoggedPaciente.getPaciente();
+            model.addAttribute("paciente", pac);
+            Consulta cons = new Consulta(null,LocalDateTime.now().toString(), "Arrasate", "Nafarroa Hiribidea", "null", "nombre",
                 0, base64, LoggedPaciente.getPaciente().getNumss().toString(), 1,null, null);
-        consUtils.insertConsulta(cons);
-        RabbitMQUtil ru = new RabbitMQUtil();
-        Consulta c = ru.conexion();
-        Enfermedad e=consUtils.getDefEnfermedad(c.getEnfermedad());
-        model.addAttribute("enfermedad", e);
+            consUtils.insertConsulta(cons);
+            RabbitMQUtil ru = new RabbitMQUtil();
+            Consulta c = ru.conexion();
+            Enfermedad e=consUtils.getDefEnfermedad(c.getEnfermedad());
+            model.addAttribute("enfermedad", e);
+        }
         return "diagnostico";
     }
 
     @RequestMapping(path = "/deleteCons/{id}")
     public String deleteCons(@PathVariable("id") Integer id, Model model){
-        consUtils.deleteCons(id);
+        if(consultaSanetizacion.sanetizarId(id)){
+            consUtils.deleteCons(id);
+        }
         return "redirect:/adminPage";
     }
 
-    @RequestMapping(path = "/confirm/{id}")
+    @RequestMapping(path = "/confirmar/{id}")
     public String confirmDiagnostico(@PathVariable("id") Integer id){
+        if(consultaSanetizacion.sanetizarId(id)){
+            consUtils.validarCons(id);
+        }
+        return "redirect:/adminPage";
+    }
+
+    @RequestMapping(path = "/denegar/{id}")
+    public String denegarDiagnostico(@PathVariable("id") Integer id){
+        if(consultaSanetizacion.sanetizarId(id)){
+            consUtils.denegarCons(id);
+        }
         return "redirect:/adminPage";
     }
 

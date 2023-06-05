@@ -11,6 +11,7 @@ public class Paciente {
     Integer edad;
     String medico;
 
+    public Paciente(){}
 
     public Paciente(String nombre, String apellido, String numss, String fechanacimiento, String dni, String ciudad, Integer edad, String medico) {
         this.nombre = nombre;
@@ -79,9 +80,14 @@ public class Paciente {
         this.edad = edad;
     }
 
-    public String getNombreMedico(){
+    public String getMedico() {
         return this.medico;
     }
+
+    public void setMedico(String medico) {
+        this.medico = medico;
+    }
+
 
     @Override
     public String toString() {

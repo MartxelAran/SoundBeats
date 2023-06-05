@@ -126,7 +126,37 @@ public class ConsultaUtils {
     public void deleteCons(int consultaid){
         URL url;
         try {
-            url = new URL("http://soundbeatsnodered.duckdns.org/deleteCons/");
+            url = new URL("http://soundbeatsnodered.duckdns.org/deleteCons?consultaid="+consultaid);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            
+            int responseCode = con.getResponseCode();
+            System.out.println("Código de respuesta: " + responseCode);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public void validarCons(int consultaid){
+        URL url;
+        try {
+            url = new URL("http://soundbeatsnodered.duckdns.org/validarCons?consultaid="+consultaid);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            
+            int responseCode = con.getResponseCode();
+            System.out.println("Código de respuesta: " + responseCode);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public void denegarCons(int consultaid){
+        URL url;
+        try {
+            url = new URL("http://soundbeatsnodered.duckdns.org/denegarCons?consultaid="+consultaid);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
             
