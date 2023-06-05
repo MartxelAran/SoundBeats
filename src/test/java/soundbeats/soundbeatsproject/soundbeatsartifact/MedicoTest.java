@@ -5,7 +5,7 @@ import javax.transaction.Transactional;
 
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.junit.jupiter.api.Test;
+
 
 import soundbeats.soundbeatsproject.soundbeatsartifact.domain.medico.Medico;
 

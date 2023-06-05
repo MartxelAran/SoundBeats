@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
-import org.junit.jupiter.api.Test;
+
 
 import soundbeats.soundbeatsproject.soundbeatsartifact.domain.paciente.Paciente;
 
