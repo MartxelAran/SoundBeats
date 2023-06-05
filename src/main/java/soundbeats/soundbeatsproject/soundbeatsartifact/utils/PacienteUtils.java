@@ -5,13 +5,13 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import soundbeats.soundbeatsproject.soundbeatsartifact.domain.consulta.Consulta;
+import soundbeats.soundbeatsproject.soundbeatsartifact.domain.medico.Medico;
 import soundbeats.soundbeatsproject.soundbeatsartifact.domain.paciente.Paciente;
 
 @Component
@@ -78,5 +78,32 @@ public class PacienteUtils {
             System.out.println("Ocurrió un error: " + e.getMessage());
         }
 		return paciente;
+	}
+
+    public Medico getMedicoById(Integer id) {
+        Medico medico=null;
+        try {
+            URL url = new URL("http://soundbeatsnodered.duckdns.org/medico?medicoid="+id);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            
+            int responseCode = con.getResponseCode();
+            System.out.println("Código de respuesta: " + responseCode);
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+            // Convertir el JSON a un objeto Java
+            Gson gson=new GsonBuilder().create();
+            Medico[] medicos = gson.fromJson(response.toString(), Medico[].class);
+            medico=medicos[0];
+        } catch (Exception e) {
+            System.out.println("Ocurrió un error: " + e.getMessage());
+        }
+		return medico;
 	}
 }

@@ -16,7 +16,6 @@ public class Consulta {
     Integer hospitalID;
     Paciente pac;
 
-
     public Consulta() {
     }
 
@@ -87,7 +86,7 @@ public class Consulta {
         return this.verificado;
     }
 
-    public void setverificado(Integer verificado) {
+    public void setVerificado(Integer verificado) {
         this.verificado = verificado;
     }
 
@@ -105,10 +104,6 @@ public class Consulta {
 
     public void setNuss(String nuss){
         this.nuss=nuss;
-    }
-
-    public void setVerificado(Integer verificado) {
-        this.verificado = verificado;
     }
 
     public Integer getFarmaciaID() {

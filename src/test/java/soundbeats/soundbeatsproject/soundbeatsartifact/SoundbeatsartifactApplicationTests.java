@@ -1,13 +1,11 @@
 package soundbeats.soundbeatsproject.soundbeatsartifact;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class SoundbeatsartifactApplicationTests {
+public class SoundbeatsartifactApplicationTests {
 
 	@Test
-	void contextLoads() {
+	public void main() {
+		SoundbeatsartifactApplication.main(new String[] {});
 	}
-
 }
