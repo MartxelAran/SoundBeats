@@ -14,6 +14,12 @@ import soundbeats.soundbeatsproject.soundbeatsartifact.domain.diagnosticos.Enfer
 public class EnfermedadTest {
 
     @Test
+    public void shouldReturnEnfermedad(){
+        Enfermedad enf=new Enfermedad("Murmur", "Es un problema cardiovascular grave");
+        assertEquals("Murmur", enf.getNombre());
+    }
+
+    @Test
     public void shouldReturnName(){
         Enfermedad enf=new Enfermedad();
         enf.setNombre("Murmur");

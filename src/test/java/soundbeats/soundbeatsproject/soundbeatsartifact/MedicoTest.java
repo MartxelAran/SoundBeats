@@ -15,6 +15,12 @@ import soundbeats.soundbeatsproject.soundbeatsartifact.domain.medico.Medico;
 public class MedicoTest {
     
     @Test
+    public void shouldReturnMedico(){
+        Medico med=new Medico("Laura Martinez", null, "82930182O");
+        assertEquals("Laura Martinez", med.getNombrecompleto());
+    }
+
+    @Test
     public void shouldReturnName(){
         Medico med=new Medico();
         med.setNombrecompleto("Laura Martinez");

@@ -9,6 +9,8 @@ import soundbeats.soundbeatsproject.soundbeatsartifact.utils.RabbitMQUtil;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -16,6 +18,8 @@ import java.util.concurrent.TimeoutException;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
+@SpringBootTest
+@Transactional
 public class RabbitMQTest {
     @Mock
     private ConnectionFactory connectionFactoryMock;

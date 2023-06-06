@@ -83,4 +83,18 @@ public class ConsultaTest {
         cons.setPac(pac);
         assertEquals("Aranzadi", cons.getPac().getApellido());
     }
+
+    @Test
+    public void shouldReturnFarmaciaID(){
+        Consulta cons=new Consulta();
+        cons.setFarmaciaID(1);
+        assertEquals("1", String.valueOf(cons.getFarmaciaID()));
+    }
+
+    @Test
+    public void shouldReturnHospitalID(){
+        Consulta cons=new Consulta();
+        cons.setHospitalID(1);
+        assertEquals("1", String.valueOf(cons.getHospitalID()));
+    }
 }

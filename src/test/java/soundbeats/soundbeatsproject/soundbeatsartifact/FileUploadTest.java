@@ -10,10 +10,14 @@ import java.util.Base64;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.transaction.annotation.Transactional;
 
 import soundbeats.soundbeatsproject.soundbeatsartifact.utils.FileUploadUtil;
 
+@SpringBootTest
+@Transactional
 public class FileUploadTest {
 
     @Mock
