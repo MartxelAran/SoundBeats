@@ -40,6 +40,8 @@ public class ConsultaController {
     private ConsultaSanetizacion consultaSanetizacion;
 
     static final String UPLOAD_DIR = "src/main/resources/static/audios";
+
+    public String redirectAdmin="redirect:/adminPage";
     
     @GetMapping("/historial")
     public String getHistoria(Model model){
@@ -57,7 +59,7 @@ public class ConsultaController {
             Paciente pac=LoggedPaciente.getPaciente();
             model.addAttribute("paciente", pac);
             Consulta cons = new Consulta(null,LocalDateTime.now().toString(), "Arrasate", "Nafarroa Hiribidea", "null", "nombre",
-                0, base64, LoggedPaciente.getPaciente().getNumss().toString(), 1,null, null);
+                0, base64, LoggedPaciente.getPaciente().getNumss(), 1,null, null);
             consUtils.insertConsulta(cons);
             RabbitMQUtil ru = new RabbitMQUtil();
             Consulta c = ru.conexion();
@@ -72,7 +74,7 @@ public class ConsultaController {
         if(consultaSanetizacion.sanetizarId(id)){
             consUtils.deleteCons(id);
         }
-        return "redirect:/adminPage";
+        return redirectAdmin;
     }
 
     @RequestMapping(path = "/confirmar/{id}")
@@ -80,7 +82,7 @@ public class ConsultaController {
         if(consultaSanetizacion.sanetizarId(id)){
             consUtils.validarCons(id);
         }
-        return "redirect:/adminPage";
+        return redirectAdmin;
     }
 
     @RequestMapping(path = "/denegar/{id}")
@@ -88,7 +90,7 @@ public class ConsultaController {
         if(consultaSanetizacion.sanetizarId(id)){
             consUtils.denegarCons(id);
         }
-        return "redirect:/adminPage";
+        return redirectAdmin;
     }
 
     @GetMapping("/adminPage")

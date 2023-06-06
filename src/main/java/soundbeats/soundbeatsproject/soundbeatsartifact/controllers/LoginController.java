@@ -21,32 +21,32 @@ public class LoginController {
     private PacienteUtils pacUtils;
 
     @Autowired LoginSanetizacion loginSanetizacion;
+
+    public String retLogin="login";
     
     @PostMapping("/login")
     public String getLogin(@RequestParam("numSS") String numSS, @RequestParam("1apellido") String apellido,
         @RequestParam("fechadenacimiento") String fechanacimiento, Model model) {
-        String ret="login";
         if(loginSanetizacion.sanetizarNuss(numSS)&&loginSanetizacion.sanetizarApellido(apellido)){
             Paciente paciente=pacUtils.getPacienteById(numSS, apellido, fechanacimiento);
             model.addAttribute("paciente", paciente);
             LoggedPaciente.setPaciente(paciente);
-            ret="home";
+            return "home";
         }
-        return ret;
+        return retLogin;
     }
 
     @PostMapping("/admin")
     public String adminLogin(@RequestParam("passw") String passw, Model model){
         BCryptPasswordEncoder cript=new BCryptPasswordEncoder();
-        String retur="login";
         Medico med=null;
         if(loginSanetizacion.sanetizarContrasena(passw)){
             med=pacUtils.getMedicoById(1);
         }
         if(med!=null&&cript.matches(passw, med.getPassword())){
-            retur="redirect:/adminPage";
+            return "redirect:/adminPage";
         }
-        return retur;
+        return retLogin;
     }
 
     @GetMapping("/login")
