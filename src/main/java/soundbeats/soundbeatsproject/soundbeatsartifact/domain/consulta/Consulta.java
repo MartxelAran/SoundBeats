@@ -130,17 +130,4 @@ public class Consulta {
     public void setPac(Paciente pac) {
         this.pac = pac;
     }
-
-    @Override
-    public String toString() {
-        return "{" +
-            " nuss='" + getNuss() + "'" +
-            ", fecha='" + getFecha() + "'" +
-            ", ciudad='" + getCiudad() + "'" +
-            ", direccion='" + getDireccion() + "'" +
-            ", enfermedad='" + getEnfermedad() + "'" +
-            ", nombreMedico='" + getNombreMedico() + "'" +
-            ", verificado='" + getVerificado() + "'" +
-            "}";
-    }
 }

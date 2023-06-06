@@ -42,9 +42,8 @@ public class ConsultaUtils {
                 response.append(inputLine);
             }
             in.close();
+            
             // Convertir el JSON a un objeto Java
-            System.out.println(response.toString());
-
             Gson gson=new GsonBuilder().create();
             Consulta[] consultasArray = gson.fromJson(response.toString(), Consulta[].class);
             consultas=Arrays.asList(consultasArray);

@@ -87,17 +87,4 @@ public class Paciente {
     public void setMedico(String medico) {
         this.medico = medico;
     }
-
-
-    @Override
-    public String toString() {
-        return
-            "Nombre='" + getNombre() + "'" +
-            ", apellido='" + getApellido() + "'" +
-            ", numss='" + getNumss() + "'" +
-            ", fechanacimiento='" + getFechanacimiento() + "'" +
-            ", dni='" + getDni() + "'" +
-            ", ciudad='" + getCiudad() + "'" +
-            ", edad='" + getEdad();
-    }
 }

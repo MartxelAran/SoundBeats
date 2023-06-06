@@ -34,8 +34,6 @@ public class PacienteUtils {
             }
             in.close();
             // Convertir el JSON a un objeto Java
-            System.out.println(response.toString());
-
             Gson gson=new GsonBuilder().create();
             Paciente[] pacientes = gson.fromJson(response.toString(), Paciente[].class);
             paciente=pacientes[0];
