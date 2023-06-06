@@ -26,13 +26,15 @@ public class FileUploadUtil {
     
     static final String UPLOAD_DIR = "src/main/resources/static/audios";
 
-    public FileUploadUtil(){}
-
-    public void saveFile(String uploadDir, String fileName, MultipartFile multipartFile) throws IOException{
-        Path uploadPath = (Path) Paths.get(uploadDir);
+    public Boolean saveFile(String uploadDir, String fileName, MultipartFile multipartFile) throws IOException{
+        Path uploadPath = Paths.get(uploadDir);
         InputStream inputStream = multipartFile.getInputStream();
         Path filePath=uploadPath.resolve(fileName);
-        Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+        long stream=Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+        if(stream!=0){
+            return true;
+        }
+        return false;
     }
 
     public String convertBase64(String path){
