@@ -2,6 +2,8 @@ package soundbeats.soundbeatsproject.soundbeatsartifact.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import soundbeats.soundbeatsproject.soundbeatsartifact.domain.consulta.Consulta;
 import soundbeats.soundbeatsproject.soundbeatsartifact.domain.diagnosticos.Enfermedad;
-import soundbeats.soundbeatsproject.soundbeatsartifact.domain.paciente.LoggedPaciente;
 import soundbeats.soundbeatsproject.soundbeatsartifact.domain.paciente.Paciente;
 import soundbeats.soundbeatsproject.soundbeatsartifact.sanetizacion.ConsultaSanetizacion;
 import soundbeats.soundbeatsproject.soundbeatsartifact.utils.ConsultaUtils;
@@ -44,25 +45,24 @@ public class ConsultaController {
     public String redirectAdmin="redirect:/adminPage";
     
     @GetMapping("/historial")
-    public String getHistoria(Model model){
-        List<Consulta> consultas=consUtils.getConsultasByNuss(LoggedPaciente.getPaciente().getNumss());
-        model.addAttribute("paciente", LoggedPaciente.getPaciente());
+    public String getHistoria(Model model, HttpSession sesion){
+        Paciente pac=(Paciente) sesion.getAttribute("paciente");
+        List<Consulta> consultas=consUtils.getConsultasByNuss(pac.getNumss());
         model.addAttribute("consultas", consultas);
         return "historial";
     }
 
     @PostMapping("/subirArchivo")
-    public String getAudio(@RequestParam("file") MultipartFile file, Model model) {
+    public String getAudio(@RequestParam("file") MultipartFile file, Model model, HttpSession sesion) {
         String path=fileUploadUtil.getDeszip(file);
         if(path!=null){
             String base64=fileUploadUtil.convertBase64(path);
-            Paciente pac=LoggedPaciente.getPaciente();
-            model.addAttribute("paciente", pac);
+            Paciente pac=(Paciente) sesion.getAttribute("paciente");
             Consulta cons = new Consulta(null,LocalDateTime.now().toString(), "Arrasate", "Nafarroa Hiribidea", "null", "nombre",
-                0, base64, LoggedPaciente.getPaciente().getNumss(), 1,null, null);
+                0, base64, pac.getNumss(), 1,null, null);
             consUtils.insertConsulta(cons);
             RabbitMQUtil ru = new RabbitMQUtil();
-            Consulta c = ru.conexion();
+            Consulta c = ru.conexion(pac.getNumss());
             Enfermedad e=consUtils.getDefEnfermedad(c.getEnfermedad());
             model.addAttribute("enfermedad", e);
         }
@@ -70,7 +70,7 @@ public class ConsultaController {
     }
 
     @RequestMapping(path = "/deleteCons/{id}")
-    public String deleteCons(@PathVariable("id") Integer id, Model model){
+    public String deleteCons(@PathVariable("id") Integer id){
         if(consultaSanetizacion.sanetizarId(id)){
             consUtils.deleteCons(id);
         }
@@ -94,10 +94,15 @@ public class ConsultaController {
     }
 
     @GetMapping("/adminPage")
-    public String adminPage(Model model){
-        List<Consulta> consultas=consUtils.getConsultasPorMedico(1);
-        List<Consulta> consultas2=pacUtils.getPacientesPorNuss(consultas);
-        model.addAttribute("consultas", consultas2);
-        return "admin";
+    public String adminPage(Model model, HttpSession sesion){
+        String ret="error";
+        if(sesion.getAttribute("medico")!=null){
+            List<Consulta> consultas=consUtils.getConsultasPorMedico(1);
+            List<Consulta> consultas2=pacUtils.getPacientesPorNuss(consultas);
+            model.addAttribute("consultas", consultas2);
+            ret="admin";
+        }
+        
+        return ret;
     }
 }

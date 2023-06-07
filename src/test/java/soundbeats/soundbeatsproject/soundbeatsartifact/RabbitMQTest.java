@@ -33,12 +33,12 @@ public class RabbitMQTest {
     @Test
     public void testConexion() throws InterruptedException, IOException, TimeoutException {
         MockitoAnnotations.openMocks(this);
-        Consulta cons=new Consulta(1, "2023-06-06T9:38:04", "Arrasate", null, null, null, null, null, null, null, null, null);
+        Consulta cons=new Consulta(1, "2023-06-06T9:38:04", "Arrasate", null, null, null, null, null, "0000000000", null, null, null);
 
-        when(rabbitMQUtilMock.conexion()).thenReturn(cons);
+        when(rabbitMQUtilMock.conexion("0000000000")).thenReturn(cons);
 
         // Llamar a la función que se va a probar
-        Consulta result = rabbitMQUtilMock.conexion();
+        Consulta result = rabbitMQUtilMock.conexion("0000000000");
 
         // Verificar el resultado
         // Aquí puedes realizar aserciones adicionales según la estructura de tu clase Consulta

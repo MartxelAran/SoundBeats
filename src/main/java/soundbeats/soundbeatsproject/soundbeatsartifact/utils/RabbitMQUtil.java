@@ -10,7 +10,6 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
 import soundbeats.soundbeatsproject.soundbeatsartifact.domain.consulta.Consulta;
-import soundbeats.soundbeatsproject.soundbeatsartifact.domain.paciente.LoggedPaciente;
 
 public class RabbitMQUtil {
     private static final String EXCHANGE_CARRERA = "categorias";
@@ -23,7 +22,7 @@ public class RabbitMQUtil {
         gson = new Gson();
     }
 
-    public Consulta conexion() {
+    public Consulta conexion(String nuss) {
         factory = new ConnectionFactory();
         factory.setHost("soundbeatsnodered.duckdns.org");
         try (Connection connection = factory.newConnection()) {
@@ -33,7 +32,7 @@ public class RabbitMQUtil {
             channel.exchangeDeclare(EXCHANGE_CARRERA, "topic");
 
             String queueName = channel.queueDeclare().getQueue();
-            String topic = "#."+LoggedPaciente.getPaciente().getNumss();
+            String topic = "#."+nuss;
             channel.queueBind(queueName, EXCHANGE_CARRERA, topic);
 
             final CountDownLatch latch = new CountDownLatch(1);
