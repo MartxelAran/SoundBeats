@@ -1,5 +1,7 @@
 package soundbeats.soundbeatsproject.soundbeatsartifact.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -9,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import soundbeats.soundbeatsproject.soundbeatsartifact.domain.medico.Medico;
-import soundbeats.soundbeatsproject.soundbeatsartifact.domain.paciente.LoggedPaciente;
 import soundbeats.soundbeatsproject.soundbeatsartifact.domain.paciente.Paciente;
 import soundbeats.soundbeatsproject.soundbeatsartifact.sanetizacion.LoginSanetizacion;
 import soundbeats.soundbeatsproject.soundbeatsartifact.utils.PacienteUtils;
@@ -21,32 +22,32 @@ public class LoginController {
     private PacienteUtils pacUtils;
 
     @Autowired LoginSanetizacion loginSanetizacion;
+
+    public String retLogin="login";
     
     @PostMapping("/login")
     public String getLogin(@RequestParam("numSS") String numSS, @RequestParam("1apellido") String apellido,
-        @RequestParam("fechadenacimiento") String fechanacimiento, Model model) {
-        String ret="login";
+        @RequestParam("fechadenacimiento") String fechanacimiento, Model model, HttpSession sesion) {
         if(loginSanetizacion.sanetizarNuss(numSS)&&loginSanetizacion.sanetizarApellido(apellido)){
             Paciente paciente=pacUtils.getPacienteById(numSS, apellido, fechanacimiento);
-            model.addAttribute("paciente", paciente);
-            LoggedPaciente.setPaciente(paciente);
-            ret="home";
+            sesion.setAttribute("paciente", paciente);
+            return "home";
         }
-        return ret;
+        return retLogin;
     }
 
     @PostMapping("/admin")
-    public String adminLogin(@RequestParam("passw") String passw, Model model){
+    public String adminLogin(@RequestParam("passw") String passw, Model model, HttpSession sesion){
         BCryptPasswordEncoder cript=new BCryptPasswordEncoder();
-        String retur="login";
         Medico med=null;
         if(loginSanetizacion.sanetizarContrasena(passw)){
             med=pacUtils.getMedicoById(1);
         }
         if(med!=null&&cript.matches(passw, med.getPassword())){
-            retur="redirect:/adminPage";
+            sesion.setAttribute("medico", med);
+            return "redirect:/adminPage";
         }
-        return retur;
+        return retLogin;
     }
 
     @GetMapping("/login")

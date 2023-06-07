@@ -15,7 +15,7 @@
         <h1>Diagnóstico de Enfermedad</h1>
     </header>
     <main>
-        <h1 th:text="'Gracias, '+${paciente.nombre}+' '+${paciente.apellido}+' el diagnostico se ha realizado correctamente:'"></h1>
+        <h1 th:text="'Gracias, '+${session.paciente.nombre}+' '+${session.paciente.apellido}+' el diagnostico se ha realizado correctamente:'"></h1>
         <h2>DIAGNOSTICO:</h2>
         <div id="diagnostico">
             <label for="nombreDiagnostico"><p th:text="'Resultado: '+${enfermedad.nombre}"></p></label>

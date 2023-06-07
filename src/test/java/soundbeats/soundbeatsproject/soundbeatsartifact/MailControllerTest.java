@@ -21,8 +21,8 @@ public class MailControllerTest {
     public void testMail() throws Exception {
         MockitoAnnotations.openMocks(this);
 
-        when(mailControllerMock.mail()).thenReturn("mail");
-        String result=mailControllerMock.mail();
+        when(mailControllerMock.mail(null)).thenReturn("mail");
+        String result=mailControllerMock.mail(null);
         assertEquals(result,"mail");
     }
 }

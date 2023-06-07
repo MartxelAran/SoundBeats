@@ -11,7 +11,7 @@
 <body>
     <header>
         <img src="images/soundbeats-logo.png" alt="Logo SoundBeats">
-        <h1 th:text="Bienvenido+' '+${paciente.nombre}+' '+${paciente.apellido}"></h1>
+        <h1 th:text="Bienvenido+' '+${session.paciente.nombre}+' '+${session.paciente.apellido}"></h1>
     </header>
     <main>
         <form method="post" action="/subirArchivo" enctype="multipart/form-data">

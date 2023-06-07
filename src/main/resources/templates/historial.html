@@ -15,13 +15,16 @@
         <h1>Historial de Diagnósticos de Enfermedades</h1>
     </header>
     <main>
-        <h1 th:text="${paciente.nombre}+' '+${paciente.apellido}+' este es tu Historial de diagnosticos/consultas:'"></h1>
+        <h1 th:text="${session.paciente.nombre}+' '+${session.paciente.apellido}+' este es tu historial de diagnosticos/consultas:'"></h1>
         <div th:each="consulta : ${consultas}" id="diagnostico">
             <h2>DIAGNOSTICO</h2>
             <label for="nombreEnfermedad"><p th:text="'Resultado: '+${consulta.enfermedad}"></p></label>
             <label for="fechaConsulta"><p th:text="'Fecha de la consulta: '+${consulta.fecha}"></p></label>
             <label for="direccion"><p th:text="'Direccion de la consulta: '+${consulta.ciudad}+', '+${consulta.direccion}"></p></label>
             <label for="nombreMedico"><p th:text="'Nombre del medico: '+${consulta.nombreMedico}"></p></label>
+            <label th:if="${consulta.verificado} == 0" for="verificado"><p>Diagnostico no verificado</p></label>
+            <label th:if="${consulta.verificado} == 1" for="verificado"><p>Diagnostico verificado</p></label>
+            <label th:if="${consulta.verificado} == 2" for="verificado"><p>Diagnostico denegado</p></label>
         </div>
         <a href="/home" class="button">Atras</a>
     </main>
