@@ -13,6 +13,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.CertificateException;
 import java.util.concurrent.TimeoutException;
 
 import static org.junit.Assert.assertEquals;
@@ -31,7 +36,7 @@ public class RabbitMQTest {
     private RabbitMQUtil rabbitMQUtilMock;
 
     @Test
-    public void testConexion() throws InterruptedException, IOException, TimeoutException {
+    public void testConexion() throws InterruptedException, IOException, TimeoutException, KeyManagementException, UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException, CertificateException {
         MockitoAnnotations.openMocks(this);
         Consulta cons=new Consulta(1, "2023-06-06T9:38:04", "Arrasate", null, null, null, null, null, "0000000000", null, null, null);
 
