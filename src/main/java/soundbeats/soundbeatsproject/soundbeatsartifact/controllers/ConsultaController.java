@@ -19,6 +19,13 @@ import soundbeats.soundbeatsproject.soundbeatsartifact.utils.FileUploadUtil;
 import soundbeats.soundbeatsproject.soundbeatsartifact.utils.PacienteUtils;
 import soundbeats.soundbeatsproject.soundbeatsartifact.utils.RabbitMQUtil;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.CertificateException;
 import java.time.LocalDateTime;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,7 +60,7 @@ public class ConsultaController {
     }
 
     @PostMapping("/subirArchivo")
-    public String getAudio(@RequestParam("file") MultipartFile file, Model model, HttpSession sesion) {
+    public String getAudio(@RequestParam("file") MultipartFile file, Model model, HttpSession sesion) throws KeyManagementException, UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException, CertificateException, FileNotFoundException, IOException {
         String path=fileUploadUtil.getDeszip(file);
         if(path!=null){
             String base64=fileUploadUtil.convertBase64(path);

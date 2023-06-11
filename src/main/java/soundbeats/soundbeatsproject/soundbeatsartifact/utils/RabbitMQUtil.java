@@ -1,8 +1,20 @@
 package soundbeats.soundbeatsproject.soundbeatsartifact.utils;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.CertificateException;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeoutException;
+
+import javax.net.ssl.KeyManagerFactory;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManagerFactory;
 
 import com.google.gson.Gson;
 import com.rabbitmq.client.Channel;
@@ -22,7 +34,30 @@ public class RabbitMQUtil {
         gson = new Gson();
     }
 
-    public Consulta conexion(String nuss) {
+    public Consulta conexion(String nuss) throws NoSuchAlgorithmException, KeyManagementException, KeyStoreException, CertificateException, FileNotFoundException, IOException, UnrecoverableKeyException {
+
+        char[] keyPassphrase = "sf4463sf".toCharArray();
+        KeyStore ks = KeyStore.getInstance("PKCS12");
+        ks.load(new FileInputStream("src/main/resources/certs/client_my-rabbit.p12"), keyPassphrase);
+  
+        KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
+        kmf.init(ks, keyPassphrase);
+  
+        char[] trustPassphrase = "sf4463sf".toCharArray();
+        KeyStore tks = KeyStore.getInstance("JKS");
+        tks.load(new FileInputStream("src/main/resources/certs/truststoreplus.jks"), trustPassphrase);
+  
+        TrustManagerFactory tmf = TrustManagerFactory.getInstance("SunX509");
+        tmf.init(tks);
+  
+        SSLContext c = SSLContext.getInstance("TLSv1.2");
+        c.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
+  
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setPort(5671);
+        factory.useSslProtocol(c);
+
+
         factory = new ConnectionFactory();
         factory.setHost("soundbeatsnodered.duckdns.org");
         try (Connection connection = factory.newConnection()) {
