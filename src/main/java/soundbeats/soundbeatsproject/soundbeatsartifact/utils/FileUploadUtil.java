@@ -31,7 +31,7 @@ public class FileUploadUtil {
         InputStream inputStream = multipartFile.getInputStream();
         Path filePath=uploadPath.resolve(fileName);
         Files.createDirectories(filePath.getParent());
-        long stream=Files.copy(inputStream, filePath);
+        long stream=Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
         if(stream!=0){
             return true;
         }
