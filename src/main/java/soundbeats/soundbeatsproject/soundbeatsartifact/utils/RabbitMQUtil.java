@@ -16,6 +16,7 @@ import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
 
+
 import com.google.gson.Gson;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
@@ -38,14 +39,14 @@ public class RabbitMQUtil {
 
         char[] keyPassphrase = "sf4463sf".toCharArray();
         KeyStore ks = KeyStore.getInstance("PKCS12");
-        ks.load(new FileInputStream("src/main/resources/certs/client_my-rabbit.p12"), keyPassphrase);
+        ks.load(new FileInputStream("certs/client_my-rabbit.p12"), keyPassphrase);
   
         KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
         kmf.init(ks, keyPassphrase);
   
         char[] trustPassphrase = "sf4463sf".toCharArray();
         KeyStore tks = KeyStore.getInstance("JKS");
-        tks.load(new FileInputStream("src/main/resources/certs/truststoreplus.jks"), trustPassphrase);
+        tks.load(new FileInputStream("certs/truststoreplus.jks"), trustPassphrase);
   
         TrustManagerFactory tmf = TrustManagerFactory.getInstance("SunX509");
         tmf.init(tks);

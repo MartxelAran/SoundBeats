@@ -24,13 +24,14 @@ public class FileUploadUtil {
     @Autowired
     private ConsultaSanetizacion consultaSanetizacion;
     
-    static final String UPLOAD_DIR = "src/main/resources/static/audios";
+    static final String UPLOAD_DIR = "upload";
 
     public Boolean saveFile(String uploadDir, String fileName, MultipartFile multipartFile) throws IOException{
         Path uploadPath = Paths.get(uploadDir);
         InputStream inputStream = multipartFile.getInputStream();
         Path filePath=uploadPath.resolve(fileName);
-        long stream=Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+        Files.createDirectories(filePath.getParent());
+        long stream=Files.copy(inputStream, filePath);
         if(stream!=0){
             return true;
         }
@@ -60,17 +61,17 @@ public class FileUploadUtil {
         try {
             fileUploadUtil.saveFile(UPLOAD_DIR, fileName, file);
 
-            ZipInputStream zipIn = new ZipInputStream(new FileInputStream("src/main/resources/static/audios/"+fileName));
+            ZipInputStream zipIn = new ZipInputStream(new FileInputStream("upload/"+fileName));
             ZipEntry entry = zipIn.getNextEntry();
             
             while (entry != null) {
                 if (!entry.isDirectory()) {
                     String filename2=entry.getName();
                     if(consultaSanetizacion.sanetizarFile(filename2)){
-                        String filePath = UPLOAD_DIR + "/" + filename2;
+                        String filePath = "upload/" + filename2;
                         path = Paths.get(filePath);
                         Files.createDirectories(path.getParent());
-                        ret="src/main/resources/static/audios/"+filename2;
+                        ret="upload/"+filename2;
                         Files.copy(zipIn, path);
                     }
                 }
